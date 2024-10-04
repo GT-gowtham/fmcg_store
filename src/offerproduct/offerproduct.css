@@ -1,0 +1,218 @@
+/* General styling for the product list */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(180px, 1fr)); /* Display 5 products per row */
+    gap: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 1200px) {
+    .product-list {
+      grid-template-columns: repeat(4, minmax(150px, 1fr)); /* 4 products per row for medium screens */
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .product-list {
+      grid-template-columns: repeat(3, minmax(150px, 1fr)); /* 3 products per row for smaller screens */
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .product-list {
+      grid-template-columns: repeat(2, minmax(150px, 1fr)); /* 2 products per row for tablets */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .product-list {
+      grid-template-columns: 1fr; /* 1 product per row for mobile screens */
+    }
+  }
+  
+  /* Styling for each product item */
+  .product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 16px;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Styling for the favorite button */
+  .favorite-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: #550a35;
+    text-align: end;
+  }
+  
+  /* Styling for the product image */
+  .product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  
+  /* Styling for product name and price */
+  .product-name {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+  
+  .product-price {
+    font-size: 18px;
+    color: #333;
+    
+  }
+  
+  /* Styling for buttons */
+  .buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .buy-now {
+    background-color: #550a35;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cart {
+    background-color: white;
+    color: #550a35;
+    border-color: #550a35;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cart:hover {
+    background-color: #550a35;
+    color: white;
+    border: none;
+  }
+  
+  /* Message styling */
+  .message {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  
+  
+  
+  
+  /* Contact */
+  
+  .contact {
+    background-color:white;
+    /* color: black; */
+    color:white;
+    color: black;
+    /* color:white; */
+    padding: 0 0.5rem;
+    padding-right: 0rem;
+    padding-left: 0rem;
+  
+    padding :4rem 5rem;
+    }
+    .contact .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    }
+    
+    .contact .row .col h2 {
+    margin-bottom: 1.5rem;
+    }
+    
+    .contact .row .col p {
+    width: 70%;
+    margin-bottom: 2rem;
+    }
+    
+    .btn-1 {
+    background-color: #550A35;
+    color:white;
+    display: inline-block;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    }
+    
+    .contact form div {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    }
+    
+    .contact form input {
+    font-family: 'Roboto', sans-serif;
+    text-indent: 2rem;
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1.5rem 0;
+    outline: none;
+    border: none;
+    background-color: #550A35 ;
+    color:white;
+  
+    }
+    
+    .contact form a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #550A35;
+    background-color: white;
+    color: black;
+  
+    margin: 0.5rem;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    }
+    
+    @media only screen and (max-width: 996px) {
+    .contact {
+    padding: 8rem 8rem;
+    }
+    }
+    
+    @media only screen and (max-width: 768px) {
+    .contact .row {
+    grid-template-columns: 1fr;
+    gap: 5rem 0;
+    }
+    
+    .contact form div {
+    width: 100%;
+    }
+    }
+    
+    @media only screen and (max-width: 567px) {
+    .contact {
+    padding: 8rem 1rem;
+    }
+    }
+    
+    
+  
+  

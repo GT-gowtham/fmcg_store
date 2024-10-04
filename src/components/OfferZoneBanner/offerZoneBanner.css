@@ -1,0 +1,86 @@
+.offer-zone-banner {
+ /* Light background for a clean look */
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.offer-zone-banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: bold;
+}
+
+.offers-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 6 items per row */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.offer-item {
+  background: #ffffff; /* White background for the circle */
+  padding: 20px;
+  border-radius: 50%; /* Make it a circle */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 180px;
+  width: 180px;
+}
+
+.offer-item:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow */
+}
+
+.offer-item h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #550A35; /* Primary color for titles */
+}
+
+.offer-item p {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.shop-now-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #550A35;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background-color: #550A35; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .offers-list {
+    grid-template-columns: repeat(5, 1fr); /* 5 items per row for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .offers-list {
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row for smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .offers-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row for extra-small screens */
+  }
+}

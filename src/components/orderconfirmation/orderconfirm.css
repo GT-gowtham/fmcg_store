@@ -1,0 +1,81 @@
+.order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.place-order-btn {
+  padding: 10px 20px; 
+  font-size: 18px;
+  background-color: #550a35;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.place-order-btn:hover {
+  background-color: #7a0f53;
+}
+
+.success-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.checkmark-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #550a35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.checkmark {
+  width: 20px;
+  height: 40px;
+  border: solid white;
+  border-width: 0 6px 6px 0;
+  transform: rotate(45deg);
+  position: absolute;
+  animation: checkmarkDraw 0.5s ease-in-out forwards;
+}
+
+@keyframes checkmarkDraw {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 0;
+    height: 40px;
+  }
+  100% {
+    width: 20px;
+    height: 40px;
+  }
+}
+
+.success-animation h2 {
+  color: #550a35;
+  margin-top: 10px;
+  font-size: 18px;
+}
