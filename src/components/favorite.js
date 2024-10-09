@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Typography, Box, Container, Button, IconButton } from "@mui/material";
 import { Link } from 'react-router-dom';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import axios from 'axios';
 
-function Favorite({ likedProducts, onAddToCart, onLikeToggle }) {
+function Favorite({ user_id, onAddToCart }) {
+  const [likedProducts, setLikedProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch liked products from the wishlist
+    axios.get(`http://localhost:8000/api/wishlist/Wishlist/`)
+      .then((response) => {
+        const wishlistItems = response.data.map(item => ({
+          id: item.id, // wishlist table ID
+          product: item.wishlist_product_id // product ID
+        }));
+        
+        // Fetch product details using the product IDs
+        const productRequests = wishlistItems.map(item => 
+          axios.get(`http://localhost:8000/api/product/products/${item.product}/`)
+        );
+
+        // Fetch all product details in parallel
+        Promise.all(productRequests)
+          .then((results) => {
+            const products = results.map((res, index) => ({
+              ...res.data,
+              wishlistId: wishlistItems[index].id // Attach wishlist table ID
+            }));
+            setLikedProducts(products); // Set the liked products
+          })
+          .catch((error) => {
+            console.error('Error fetching products:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error fetching wishlist:', error);
+      });
+  }, [user_id]);
 
   const handleBuyNow = (product) => {
     if (product.inStock) {
@@ -34,11 +68,17 @@ function Favorite({ likedProducts, onAddToCart, onLikeToggle }) {
   };
 
   const handleFavoriteToggle = (product) => {
-    if (onLikeToggle) {
-      onLikeToggle(product);
-    } else {
-      console.error('onLikeToggle function is not passed as a prop.');
-    }
+    // Directly remove the product from the wishlist by wishlist ID
+    axios.delete(`http://localhost:8000/api/wishlist/Wishlist/${product.wishlistId}/`)
+      .then(() => {
+        // Update the liked products by removing the product from the list
+        setLikedProducts((prevLikedProducts) => 
+          prevLikedProducts.filter((p) => p.wishlistId !== product.wishlistId)
+        );
+      })
+      .catch((error) => {
+        console.error('Error removing from wishlist:', error);
+      });
   };
 
   return (
@@ -74,30 +114,25 @@ function Favorite({ likedProducts, onAddToCart, onLikeToggle }) {
               >
                 <IconButton
                   sx={{
-                    
                     position: "absolute",
                     top: 8,
                     right: 8,
                     color: product.isLiked ? "red" : "red",
-
                   }}
                   onClick={() => handleFavoriteToggle(product)}
                 >
                   {product.isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </IconButton>
 
-                  
-
-
                 <img
-                  src={product.image}
-                  alt={product.name}
+                  src={product.product_image}
+                  alt={product.product_name}
                   style={{ maxWidth: "70%", height: "auto", marginBottom: "10px" }}
                 />
                 <Typography variant="body1" sx={{ mt: 1 }}>
-                  {product.name} <br />ML: {product.ml}<br />
+                  {product.product_name} <br /> {product.product_qty}<br />
                   <CurrencyRupeeIcon style={{ fontSize: "15px" }}/>
-                  {product.price}/- 
+                  {product.product_price}/- 
                 </Typography>
                 <Box sx={{ marginTop: 2 }}>
                   <Button 
